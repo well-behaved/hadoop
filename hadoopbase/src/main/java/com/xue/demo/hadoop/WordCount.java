@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 /**
  * @Author: xuexiong@souche.com
  * @Date: 2019-10-31 11:13
- * @Description:
+ * @Description: 单词统计的小例子  jar版
  */
 public class WordCount {
 
@@ -30,9 +30,14 @@ public class WordCount {
         job.setJobName("wordcount");
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
-        job.setMapperClass(WordCountMap.class);
-        job.setReducerClass(WordCountReduce.class);
+
+        //输入数据的读取方式 TextInputFormat一行一行读取
         job.setInputFormatClass(TextInputFormat.class);
+        //map
+        job.setMapperClass(WordCountMap.class);
+        //reduce
+        job.setReducerClass(WordCountReduce.class);
+        //输出
         job.setOutputFormatClass(TextOutputFormat.class);
         //第一个参数是要查询的路径
         FileInputFormat.addInputPath(job, new Path(args[0]));
